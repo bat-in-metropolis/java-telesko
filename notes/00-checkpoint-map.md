@@ -24,7 +24,8 @@ collections, and streams are **not yet part of this checkpoint**.
 
 ## What the repository demonstrates
 
-The existing code provides evidence that you have practiced:
+The restructured examples preserve and make runnable the concepts you had
+practised in the original scratchpad:
 
 - primitive arithmetic, casts, operators, and loops;
 - methods and method calls;
@@ -38,9 +39,10 @@ The existing code provides evidence that you have practiced:
 - packages and access modifiers; and
 - enums with fields, constructors, methods, and `switch`.
 
-The code does not yet show a lambda expression, an explicit functional
-interface, `equals`/`hashCode` implementations, or a downcast example. These
-are the best immediate retrieval-practice targets.
+The new `functional` package closes the earlier lambda gap with equivalent
+anonymous-class, expression-lambda, and block-lambda implementations.
+`equals`/`hashCode` implementation and safe downcasting remain useful future
+retrieval-practice targets.
 
 ## Mastery tracker
 
@@ -52,18 +54,18 @@ Use these meanings:
 
 | Concept | Evidence now | Target |
 | --- | --- | --- |
-| Types, operators, control flow | several commented experiments | Solid |
-| Methods and overloading | `Calculator.add`, constructors | Solid |
-| Arrays and enhanced loop | primitive and `Student[]` examples | Solid |
-| Strings and mutability | `String`/`StringBuffer` experiments | Solid |
-| Encapsulation | `Human` private fields and accessors | Solid |
-| Static members | `Human.species`, static block/method | Solid |
-| Inheritance and `super` | calculator hierarchy, `E`/`F` | Solid |
-| Overriding and polymorphism | `G`/`H`, `Computer` implementations | Usable → Solid |
-| Access control/packages | `tools` and `tools.calcs` | Usable → Solid |
-| Abstract class/interface | `K`/`L`, `Computer`, `M`, `O` | Usable → Solid |
-| Enum/annotation | `Status`, `LaptopWithPrice`, `@Override` | Usable → Solid |
-| Functional interface/lambda | no runnable example yet | Seen → Usable |
+| Types, operators, control flow | runnable `basics` examples | Solid |
+| Methods and overloading | `MethodsDemo`, constructors | Solid |
+| Arrays and enhanced loop | `ArraysDemo` and `Student[]` | Solid |
+| Strings and mutability | `StringsDemo` | Solid |
+| Encapsulation | `Human` validates private fields | Solid |
+| Static members | `PopulationCounter` | Solid |
+| Inheritance and `super` | calculator and shape hierarchies | Solid |
+| Overriding and polymorphism | `Computer`, `Developer`, shapes | Usable → Solid |
+| Access control/packages | package-separated source tree | Usable → Solid |
+| Abstract class/interface | `Shape`, `Computer`, `Operation` | Usable → Solid |
+| Enum/annotation | `Status`, `LaptopModel`, `@Override` | Usable → Solid |
+| Functional interface/lambda | three runnable implementations | Seen → Usable |
 
 ## Dependencies between ideas
 
@@ -86,4 +88,3 @@ methods → classes/objects → encapsulation
 If polymorphism feels vague, lambdas and Spring dependency injection will feel
 like magic later. Spend review time on the *declared type vs actual object*
 distinction before advancing.
-

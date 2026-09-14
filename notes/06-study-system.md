@@ -1,30 +1,31 @@
 # Study system and next checkpoint
 
-## The watch–recall–build loop
+## The fast watch–recall–build loop
 
-Use this 45–60 minute cycle:
+Because the current goal is rapid Core Java coverage followed by one detailed
+test, use this 40–50 minute cycle:
 
-1. **Watch (20–25 min):** no coding unless the instructor asks you to predict.
-2. **Recall (5 min):** close the video and write the ideas from memory.
-3. **Build (15–20 min):** implement a different example from a blank file.
-4. **Predict (5 min):** write expected output before running it.
-5. **Review (5 min):** explain why your mistakes happened.
+1. **Watch (25–30 min):** focus on the model, not perfect notes.
+2. **Recall (3 min):** close the video and name the central ideas.
+3. **Modify (10 min):** change or extend a relevant runnable example.
+4. **Predict (3 min):** predict the changed output before running it.
+5. **Record gaps (2 min):** add uncertainty to a gap list; do not derail the
+   first pass unless the next topic depends on it.
 
-Typing along feels productive because the code works, but it tests copying.
-Blank-file recall tests whether the mental model is available when you need it.
+Typing along feels productive because the code works, but it mostly tests
+copying. The final audit will use blank-file recall; this first pass uses small
+modifications so forward momentum stays high.
 
-## Spaced review
+## Lightweight review during the fast pass
 
-Revisit each topic:
+Do not build a large spaced-repetition system yet. Use two small reviews:
 
-- Day 0: initial exercise;
-- Day 1: explain and rewrite the core example;
-- Day 3: one output-prediction question;
-- Day 7: use it inside a small program;
-- Day 14: mix it with a newer topic.
+- At the start of a session, explain yesterday's most important idea in two
+  minutes.
+- At the end of each Core Java phase, run and modify one mixed example.
 
-Do not rewatch immediately unless you can name the exact gap. First attempt to
-retrieve; the effort is part of learning.
+Record non-blocking uncertainty. Rewatch only when the gap prevents the current
+lesson from making sense. The comprehensive test comes after Core Java coverage.
 
 ## Recommended next checkpoint: 10:15:25
 
@@ -37,9 +38,10 @@ Stop just before threads. That block covers:
 - `BufferedReader`, `Scanner`, and user input; and
 - try-with-resources.
 
-Before watching it, finish the lambda drill and diagnostic in this repository.
-After watching it, build one command-line input program that validates a value
-and closes its resource correctly.
+Before watching it, run `LambdaDemo` and make one change without copying. After
+watching it, build one command-line input program that validates a value and
+closes its resource correctly. The 20-question diagnostic is optional now and
+becomes part of the later comprehensive audit.
 
 ## Weekly balance for a working frontend developer
 
@@ -67,4 +69,3 @@ refactor(java): split course experiments by concept
 ```
 
 No remote push is needed for any of this workflow.
-
