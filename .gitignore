@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# macOS Finder metadata
+.DS_Store
+
 # Log file
 *.log
 
@@ -25,3 +28,10 @@ replay_pid*
 
 # Local compilation output
 /out/
+
+# Gradle caches and build output
+.gradle/
+**/build/
+
+# The Gradle Wrapper JAR is required source-control infrastructure.
+!**/gradle/wrapper/gradle-wrapper.jar

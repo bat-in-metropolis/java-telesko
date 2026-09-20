@@ -1,98 +1,96 @@
-# Telusko Java learning log
+# Java backend learning
 
-This repository is a local learning workspace for Telusko's
-[Complete Java Development: Spring Boot, Microservices, Spring AI](https://www.youtube.com/watch?v=q6z_UCBM5Ek).
+This is my long-term, topic-oriented repository for learning the Java backend
+stack used by the FMS-GPS project at work.
+
+The goal is practical:
+
+> Read, explain, debug, test, and safely change the existing Java + Spring Boot
+> backend without relying on vibe coding.
+
+The repository is organized by technology—not by a particular YouTube course.
+The detailed priorities come from [learning-plan.md](learning-plan.md), which is
+based on the real work codebase.
 
 ## Current checkpoint
 
-- Watched through: **09:00:00**
-- Position in the full 63-hour compilation: about **14%**
-- Position in the Core Java sequence: early **lambda expressions**
-- Next new subject: lambda returns, interface types, then exceptions
-- Local JDK: **OpenJDK 17.0.13 LTS**
-- Verification: the current Java sources compile successfully
-- Primary goal: finish Core Java quickly, then run one deep gap analysis
-- Longer-term direction: full-stack development and reading Android/Kotlin code
-
-The timestamp list originally supplied for this repository is not the video's
-real chapter sequence. At 09:00:00, the course is teaching lambdas—not
-encapsulation. The corrected checkpoint is in
-[notes/00-checkpoint-map.md](notes/00-checkpoint-map.md).
-
-## Study material
-
-Read these in order:
-
-1. [Checkpoint and mastery map](notes/00-checkpoint-map.md)
-2. [Java foundations](notes/01-java-foundations.md)
-3. [Object-oriented Java](notes/02-object-oriented-java.md)
-4. [Abstraction through lambdas](notes/03-abstraction-to-lambdas.md)
-5. [Java for a JS/TS developer](notes/04-js-to-java-bridge.md)
-6. [Review of the current code](notes/05-current-code-review.md)
-7. [Study system and next checkpoint](notes/06-study-system.md)
-8. [Core Java fast-track](notes/07-core-java-fast-track.md)
-9. [Java-to-Kotlin bridge](notes/08-java-to-kotlin-bridge.md)
-
-Then work through [practice/README.md](practice/README.md) and take the
-[9-hour diagnostic](quiz/09-hour-checkpoint.md) without running the snippets.
-Use the [answer key](quiz/09-hour-answer-key.md) only after committing your
-answers.
-
-## How to use this repository
-
-For each topic:
-
-1. Watch 20–30 minutes.
-2. Close the video and write five facts from memory.
-3. Create a small runnable example without copying.
-4. Predict its output before compiling it.
-5. Explain one Java/TypeScript difference in your own words.
-6. Commit the completed concept locally.
-
-The examples now use the conventional `src/main/java` source layout. Compile
-all of them into the ignored `out` directory:
-
-```bash
-mkdir -p out
-javac -Xlint:all -d out $(find src/main/java -name '*.java')
-java -cp out dev.manas.learning.AllDemos
+```text
+Core Java through Java 8: COMPLETE
+Gradle:                     IN PROGRESS
+Spring Core:                NOT STARTED
+Spring Boot / REST:         NOT STARTED
 ```
 
-Run one subject by using its fully qualified class name:
+## Learning progress
 
-```bash
-java -cp out dev.manas.learning.polymorphism.PolymorphismDemo
-java -cp out dev.manas.learning.functional.LambdaDemo
-```
+- [x] Java syntax, classes, objects, and OOP
+- [x] Exceptions and try-with-resources
+- [x] Basic multithreading
+- [x] Collections: `List`, `Set`, and `Map`
+- [x] Comparator and Comparable
+- [x] Lambdas and functional interfaces
+- [x] Streams, including parallel streams
+- [x] Optional
+- [x] Method and constructor references
+- [ ] Gradle fundamentals — **currently learning**
+- [ ] Spring Core and dependency injection
+- [ ] Spring MVC and REST
+- [ ] SQL and MySQL
+- [ ] JPA and Hibernate
+- [ ] JUnit 4 and Mockito
+- [ ] Redis
+- [ ] Kafka
+- [ ] Docker and Kubernetes basics
 
-Compiled `.class` files and `out/` are ignored by Git.
+## Where to go
 
-## Source-code map
+| I want to revise… | Open… |
+| --- | --- |
+| Core Java overview | [core-java/README.md](core-java/README.md) |
+| Inheritance or polymorphism | [core-java/inheritance-polymorphism](core-java/inheritance-polymorphism) |
+| Interfaces or abstraction | [core-java/interfaces-abstraction](core-java/interfaces-abstraction) |
+| Exceptions | [core-java/exceptions](core-java/exceptions) |
+| Collections | [core-java/collections](core-java/collections) |
+| Lambdas | [core-java/functional](core-java/functional) |
+| Streams | [core-java/streams](core-java/streams) |
+| Optional | [core-java/optional](core-java/optional) |
+| Method references | [core-java/method-references](core-java/method-references) |
+| Threads and synchronization | [core-java/multithreading](core-java/multithreading) |
+| Gradle | [gradle/README.md](gradle/README.md) |
+| Spring Core later | [spring/README.md](spring/README.md) |
+| Spring Boot and REST later | [spring-boot/README.md](spring-boot/README.md) |
+| SQL, JPA, testing, Redis, Kafka | [backend-notes/README.md](backend-notes/README.md) |
+
+## Java versions: keep these separate
+
+| Context | Java version |
+| --- | --- |
+| FMS-GPS work backend | **Java 8** |
+| Current Gradle learning project | **Java 21** |
+
+Core Java examples in this repository intentionally remain Java 8 compatible
+where practical. Newer features such as `var`, records, sealed classes, pattern
+matching, `String.isBlank()`, and `Stream.toList()` are unavailable in the Java
+8 work project.
+
+The Gradle sample intentionally targets Java 21 because that is what was chosen
+during `gradle init`. It does not change the work backend's Java version.
+
+## How to use the repository
+
+Most Core Java folders contain one obvious `*Demo.java` with a `main` method.
+Open that file and use the IDE's **Run** button. The examples intentionally do
+not form one production application.
+
+The Gradle sample is different: it is a real generated Gradle project, so run
+its wrapper commands from inside that project. See [gradle/README.md](gradle/README.md).
+
+For work-focused learning, use this loop:
 
 ```text
-src/main/java/dev/manas/learning/
-├── basics/          types, casting, control flow, methods
-├── arrays/          primitive arrays, jagged arrays, object arrays
-├── strings/         immutability, equality, StringBuilder
-├── oop/             encapsulation and constructors
-├── statics/         class initialization and shared state
-├── inheritance/     multilevel calculator example
-├── polymorphism/    interface-based dependency and dispatch
-├── abstraction/     abstract class and concrete shapes
-├── nested/          member inner and anonymous classes
-├── enums/           fixed values with state and behavior
-├── annotations/     compiler-checked metadata
-└── functional/      functional interface and lambdas
+Learn one concept
+  → find it in FMS-GPS
+  → trace one real use
+  → explain it without AI
+  → make one small safe change or test
 ```
-
-## Definition of “learned”
-
-A topic is not complete merely because its video was watched. For the fast
-first pass, keep moving after you can explain the central idea and modify an
-example. During the final Core Java audit, mark it solid only when you can:
-
-- explain it without the instructor's wording;
-- predict a short program's output;
-- write a small example from a blank file;
-- identify one common failure mode; and
-- say when you would use it in an application.
