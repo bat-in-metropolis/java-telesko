@@ -362,6 +362,177 @@ Examples:
 ./gradlew dependencies
 ```
 
+## My Spring Boot JAR experiment
+
+I later created a separate Spring Boot project here:
+
+```text
+SpringBootGradleApp/
+```
+
+My terminal was inside that directory:
+
+```text
+/Users/manas/Documents/Codes/Personal/Java/Telusko-java-youtube/SpringBootGradleApp
+```
+
+This matters because paths such as `build/libs/` are relative to my current
+directory.
+
+### What `clean` and `build` did
+
+I ran:
+
+```bash
+gradle clean
+gradle build
+```
+
+`clean` deleted the previously generated `build/` directory. `build` then
+compiled the code, ran the tests, performed verification, and created fresh JAR
+files.
+
+The build succeeded:
+
+```text
+BUILD SUCCESSFUL
+7 actionable tasks: 7 executed
+```
+
+`7 actionable tasks` means Gradle found seven tasks that needed to run for this
+build. It is not an error or a count of Java files.
+
+I used my globally installed Gradle by typing `gradle`. Because this project
+already contains wrapper files, I normally prefer:
+
+```bash
+./gradlew clean
+./gradlew build
+```
+
+That makes the project use the Gradle version declared in
+`gradle/wrapper/gradle-wrapper.properties`.
+
+### The configuration-cache suggestion
+
+Gradle printed:
+
+```text
+Consider enabling configuration cache to speed up this build
+```
+
+This is only a performance suggestion, not a warning that my build is broken.
+The configuration cache can reuse Gradle's configuration work in later builds.
+I do not need to enable it just to continue learning or run the application.
+
+If I deliberately want to try it later, I can add this to the Spring Boot
+project's `gradle.properties`:
+
+```properties
+org.gradle.configuration-cache=true
+```
+
+I should still run the build and tests afterward because plugins and custom
+tasks must support configuration caching correctly.
+
+### The OpenJDK warning
+
+I also saw:
+
+```text
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader
+classes because bootstrap classpath has been appended
+```
+
+This is a JVM warning commonly associated with tooling or test instrumentation.
+It did not fail this build: the decisive line was still `BUILD SUCCESSFUL`. I
+do not need to fix this warning before continuing unless it is accompanied by
+failing tests or incorrect runtime behavior.
+
+### Why the `-plain.jar` did not run
+
+The build produced two JAR files:
+
+```text
+build/libs/SpringBootGradleApp-1.0.jar
+build/libs/manas_jar-1.0-plain.jar
+```
+
+I tried:
+
+```bash
+java -jar build/libs/manas_jar-1.0-plain.jar
+```
+
+Java responded:
+
+```text
+no main manifest attribute, in build/libs/manas_jar-1.0-plain.jar
+```
+
+This happened because Spring Boot created two different kinds of JAR:
+
+| JAR | Purpose |
+| --- | --- |
+| `SpringBootGradleApp-1.0.jar` | Executable Spring Boot JAR created by `bootJar`; it contains the Boot launcher and runtime dependencies |
+| `manas_jar-1.0-plain.jar` | Plain Java JAR created by `jar`; it has no executable `Main-Class` entry and does not bundle the runtime dependencies |
+
+The `plain` suffix is therefore meaningful. It tells me that this is not the
+self-contained Spring Boot application JAR.
+
+The executable JAR is:
+
+```bash
+java -jar build/libs/SpringBootGradleApp-1.0.jar
+```
+
+During development I can also let Gradle start Spring Boot directly:
+
+```bash
+./gradlew bootRun
+```
+
+Both commands start a server and keep running until I stop it, usually with
+`Ctrl+C`.
+
+### Why only the plain JAR was renamed
+
+My Spring Boot `build.gradle` contains:
+
+```groovy
+jar {
+    archiveBaseName = 'manas_jar'
+}
+```
+
+This configures the standard `jar` task, so it renamed only the plain JAR. It
+did not rename the executable JAR produced by the separate `bootJar` task.
+
+If I want the executable Spring Boot JAR to use that name instead, I can use:
+
+```groovy
+tasks.named('bootJar') {
+    archiveBaseName = 'manas_jar'
+}
+```
+
+After another build, the executable file would be:
+
+```text
+build/libs/manas_jar-1.0.jar
+```
+
+If I do not need the plain JAR at all, I can additionally disable it:
+
+```groovy
+tasks.named('jar') {
+    enabled = false
+}
+```
+
+For now, I can leave the build file unchanged and simply run the JAR without
+`-plain` in its filename.
+
 ## Where I go when I want to change something
 
 ```text
