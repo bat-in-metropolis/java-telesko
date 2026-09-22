@@ -56,7 +56,7 @@ Spring Boot / REST:         NOT STARTED
 | Optional | [core-java/optional](core-java/optional) |
 | Method references | [core-java/method-references](core-java/method-references) |
 | Threads and synchronization | [core-java/multithreading](core-java/multithreading) |
-| Gradle | [gradle/README.md](gradle/README.md) |
+| Gradle | [gradle/NOTES.md](gradle/NOTES.md) |
 | Spring Core later | [spring/README.md](spring/README.md) |
 | Spring Boot and REST later | [spring-boot/README.md](spring-boot/README.md) |
 | SQL, JPA, testing, Redis, Kafka | [backend-notes/README.md](backend-notes/README.md) |
@@ -82,8 +82,8 @@ Most Core Java folders contain one obvious `*Demo.java` with a `main` method.
 Open that file and use the IDE's **Run** button. The examples intentionally do
 not form one production application.
 
-The Gradle sample is different: it is a real generated Gradle project, so run
-its wrapper commands from inside that project. See [gradle/README.md](gradle/README.md).
+The Gradle sample is different: `gradle/` is a real generated Gradle project,
+so run its wrapper commands from that directory. See [gradle/NOTES.md](gradle/NOTES.md).
 
 For work-focused learning, use this loop:
 
