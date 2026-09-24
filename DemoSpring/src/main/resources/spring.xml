@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+<!--    <bean id="dev" class="com.manas.Dev">-->
+    <bean id="dev" class="com.manas.Dev" autowire="byName">
+<!--        <property name="age" value="39"/>-->
+<!--        <constructor-arg value="54" />-->
+<!--        <property name="laptop" ref="lap1" />-->
+<!--        <constructor-arg ref="lap1" />-->
+<!--        <property name="comp" ref="lap1" />-->
+<!--        <property name="comp" ref="desk1" />-->
+<!--        <property name="comp" ref="comp" />-->
+    </bean>
+
+    <bean id="lap1" class="com.manas.Laptop">
+    </bean>
+
+<!--    <bean id="desk1" class="com.manas.Desktop">-->
+<!--    </bean>-->
+
+    <bean id="comp" class="com.manas.Desktop">
+    </bean>
+
+<!--    <bean id="dev1" class="com.manas.Dev">-->
+<!--    </bean>-->
+</beans>
